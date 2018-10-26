@@ -15,5 +15,16 @@ module RailsSandbox
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    config.autoload_paths += %W(
+      #{Rails.root}/app/models/observers
+    )
+
+    config.active_record.observers = :user_observer
+
+    # Dir.chdir("#{Rails.root}/app/observers") do
+    #   config.active_record.observers =
+    #     Dir["*_observer.rb"].collect { |ob_name| ob_name.split(".").first }
+    # end
   end
 end
